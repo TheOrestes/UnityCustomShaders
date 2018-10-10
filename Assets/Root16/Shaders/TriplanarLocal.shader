@@ -1,4 +1,4 @@
-﻿Shader "Root16/Triplanar" 
+﻿Shader "Root16/TriplanarLocal" 
 {
 	Properties 
 	{
@@ -13,7 +13,7 @@
 
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standard fullforwardshadows
+		#pragma surface surf Standard vertex:vert fullforwardshadows
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
@@ -23,9 +23,16 @@
 
 		struct Input 
 		{
-			float3 worldPos;
-			float3 worldNormal;
+			float3 localPos;
+			float3 localNormal;
 		};
+
+		void vert(inout appdata_full v, out Input data)
+		{
+			UNITY_INITIALIZE_OUTPUT(Input, data);
+			data.localPos = v.vertex.xyz;
+			data.localNormal = v.normal.xyz;
+		}
 
 		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -37,12 +44,12 @@
 		void surf (Input IN, inout SurfaceOutputStandard o) 
 		{
 			// find UVs for each axis based on worldPosition of the fragment
-			half2 xUV = IN.worldPos.zy * _TextureScale;
-			half2 yUV = IN.worldPos.xz * _TextureScale;
-			half2 zUV = IN.worldPos.xy * _TextureScale;
+			half2 xUV = IN.localPos.zy * _TextureScale;
+			half2 yUV = IN.localPos.xz * _TextureScale;
+			half2 zUV = IN.localPos.xy * _TextureScale;
 
-		// Blending factor for triplanar mapping
-			float3 bf = normalize(abs(IN.worldNormal));
+			// Blending factor for triplanar mapping
+			float3 bf = normalize(abs(IN.localNormal));
 			bf /= dot(bf, (float3)1);
 
 			// Sample texture using 3 UV sets just created
