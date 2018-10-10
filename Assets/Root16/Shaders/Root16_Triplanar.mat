@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Mat1
+  m_Name: Root16_Triplanar
   m_Shader: {fileID: 4800000, guid: 2f2eee64ebab23e418b47a8f5bc262ac, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -39,7 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f44882f02cf26b2428ea1b2fe150772d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6a592cb0351b9b44b88b8ab55ac0ab81, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -69,8 +69,8 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TextureScale: 4.63
-    - _TriplanarBlendSharpness: 7.95
+    - _TextureScale: 0.93
+    - _TriplanarBlendSharpness: 1.46
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
